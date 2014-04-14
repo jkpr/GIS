@@ -291,24 +291,32 @@ Perform some exploratory spatial data analysis on the variables $y_1$ and $y_2$ 
 
 
 
+
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/plot1} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[]
+
+\includegraphics[width=\maxwidth]{figure/plot1} \caption[Plot of simulated $Y_1$ data]{Plot of simulated $Y_1$ data\label{fig:plot1}}
+\end{figure}
+
 
 \end{knitrout}
 
+
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/plot2} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[]
+
+\includegraphics[width=\maxwidth]{figure/plot2} \caption[Plot of simulated $Y_2$ data]{Plot of simulated $Y_2$ data\label{fig:plot2}}
+\end{figure}
+
 
 \end{knitrout}
 
 
 
 {\sf
-We do not have covariates other than the $x$ and $y$ coordinates. Therefore the plot of Data vs. $x$-coordinate and $y$-coordinate vs Data should be sufficient to describe the large scale variation. In the first set of plots, it does not appear that there is any trend between either $x$- or $y$-coordinate with the data. The scatterplots appear to be a blob of uncorrelated points. This would indicate that there is not any large scale spatial variation.
+We do not have covariates other than the $x$ and $y$ coordinates. Therefore the plot of Data vs. $x$-coordinate and $y$-coordinate vs Data should be sufficient to describe the large scale variation. In the first set of plots (Figure 1), it does not appear that there is any trend between either $x$- or $y$-coordinate with the data. The scatterplots appear to be a blob of uncorrelated points. This would indicate that there is not any large scale spatial variation.
 
-There is a difference in the second set of plots in that the $x$-coordinate seems to have a linear relationship with the data. That means that there is large scale variation with the covariates available.}
+There is a difference in the second set of plots (Figure 2) in that the $x$-coordinate seems to have a linear relationship with the data. That means that there is large scale variation with the covariates available.}
 
 \item
 Continue from (b) above and explore small scale spatial variation. Estimate and plot semivariograms for $y_1$ and $y_2$. Interpret results from both (b) and (c).
@@ -327,9 +335,9 @@ Continue from (b) above and explore small scale spatial variation. Estimate and 
 
 
 {\sf
-The variogram for $y_1$ is a flat line. This implies that $y_1$ is not spatially dependent, or that any spatial dependence is dwarfed by (is much smaller in comparison to) the variance of the data. From the plots in (b), the $y_1$ values seem pretty uniformly scattered throughout the domain.
+The semivariogram for $Y_1$ is a flat line. This implies that $Y_1$ is not spatially dependent, or that any spatial dependence is dwarfed by (is much smaller in comparison to) the variance of the data. That is consistent with the plots in (b), since the $Y_1$ values seem pretty uniformly scattered throughout the domain.
  
-The variagram for $y_2$ shows an increasing trend. This implies spatial dependence, that points closer together have more similar values than points farther apart. This reinforces the notion that there is large scale variation associated with the $x$-coordinate as discussed in (b).}
+The semivariagram for $Y_2$ shows an increasing trend. This implies spatial dependence, that points closer together have more similar values than points farther apart. This reinforces the notion that there is large scale variation associated with the $x$-coordinate as discussed in (b).}
 
 \item
 Perform simple linear regressions for $y_1$ using $x_1$ as a covariate and for $y_2$ using $x_2$ as the covariate. Estimate and plot the residual semivariograms for each. Interpret.
@@ -402,7 +410,19 @@ Let’s assume we know the spatial dependance for this design is characterized b
 \]
 \begin{enumerate}[a.]
 \item
-Use the known semivariogram model and the relation $γ(\|h\|) = C(0) - C(\|h\|)$ to estimate the covariogram $C(\|h\|)$ and correlogram $\rho(\|h\|)$. Also provide estimates for the variogram and the number of data points falling within each distance class $N(\|h\|)$. The table on the following page is provided to fill in and to further clarify what is being asked. The sample locations from this $3 \times 3$ regular grid were used to dictate the distance classes.
+Use the known semivariogram model and the relation $\gamma(\|\bh\|) = C(\textbf{0}) - C(\|\bh\|)$ to estimate the covariogram $C(\|\bh\|)$ and correlogram $\rho(\|\bh\|)$. Also provide estimates for the variogram and the number of data points falling within each distance class $N(\|\bh\|)$. The table on the following page is provided to fill in and to further clarify what is being asked. The sample locations from this $3 \times 3$ regular grid were used to dictate the distance classes.
+
+{\sf
+It is shown later that $C(0) = 25$. Thus 
+\[
+C(h) = 25 \exp(-h/2)
+\]
+and 
+\[
+\rho(h) = C(h) / C(0) = \exp(-h/2)
+\]
+The table is as follows:
+}
 
 
 
@@ -513,6 +533,8 @@ This data is already in R. Typing the commands \texttt{data(wolfcamp)} and \text
 \item
 Review the article \textit{Geostatistics} by Cressie. This is not necessarily an easy read but focus on the Introduction, Section on the case study, Concluding Remarks, and the general methodology he proposed to krige this data. See the answer to (b) below to help with understanding the read.
 
+\textsf{Done.}
+
 \item
 Describe the modeling approach used by Cressie to krige the Wolfcamp Aquifer data. Be specific to discuss large scale and small scale variation and any assumptions made about each. I would suggest writing out a model with descriptions (like those shown in class) that depicts Cressie’s approach. Answer below.
 
@@ -562,9 +584,9 @@ According to this plot, there appears to be a trend surface based on the $x$- an
 \end{kframe}
 \end{knitrout}
 
-The effect of both coordinates is a highly significant, negative linear relationship. According to the $R^2$ value, these two covariates explain 62\% of the variation of the data. This shows large scale variation.
+The effect of both coordinates is a highly significant, negative linear relationship. According to the $R^2$ value, these two covariates explain 62\% of the variation of the data. This shows large scale spatial variation.
 
-However, a variogram of the residuals shows there is still small scale variation.
+However, a variogram of the residuals shows there is still small scale spatial variation.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -577,7 +599,7 @@ However, a variogram of the residuals shows there is still small scale variation
 Suggest an alternative kriging approach than that taken in the article. Again be specific to write out a model with assumptions, etc. that describes your approach. Discuss why you selected this alternative.
 
 {\sf
-In my approach, I would try to add covariates for a ``universal kriging'' model. I do not know much about groundwater pressure, but I would think that the elevation of the ground water would be important (and that it would vary spatially). So my model would be
+In my approach, I would try to add covariates for a ``universal kriging'' model. I do not know much about groundwater pressure, but I would think that the elevation of the ground water would be important (and that it would vary spatially). I chose this covariate because the paper states the contaminants would flow ``downhill'' toward Amarillo, Texas. That got me interested in elevation. So my model would be
 \[
 Y(s) = b_0 + b_1 X(s) + \epsilon(s)
 \]

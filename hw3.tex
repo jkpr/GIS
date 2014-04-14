@@ -1,0 +1,322 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% H
+\newcommand{\bh}{\mathbf{h}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.663 Geostatistics}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Curriero}
+\newcommand{\assignmentnumber}{Assignment 3}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Questions 5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{4}
+\section{Kriging the EPA’s AQS Ozone Data.}
+This data set corresponds to the EPA’s AQS average annual daily 8 hour maximum ozone for 2007. The questions and code provided run through a kriging analysis of this data based on several different approaches. 
+All the data you will need for this problem are in the two zipped folders 
+\texttt{Ozone\_Monitors\_2007\_reproj} 
+and 
+\texttt{States\_reproj\_lower48} 
+posted on Courseplus. Unzip these and save them in your R working directory.
+
+\subsection*{Exploratory Spatial Data Analysis of the Ozone Data}
+\begin{enumerate}[a.]
+\item
+Produce a map of ozone with symbols signifying magnitude.
+
+<<setup, echo=FALSE>>=
+library(maptools)
+library(PBSmapping)
+library(geoR)
+library(splines)
+library(gstat)
+
+gpclibPermit()
+setwd("~/Google Drive/Documents/JHSPH/Year_2_Quarter_4_2014/GIS")
+@
+
+<<ozonemap, echo=FALSE>>=
+States<-readShapePoly("States_reproj_lower48/States_reproj_lower48.shp")
+Ozone<-readShapePoints("Ozone_Monitors_2007_reproj/Ozone_Monitors_2007_reproj.shp")
+
+temp<-data.frame(easting=Ozone@data$x_coord_m,northing=Ozone@data$y_coord_m,ozone=Ozone@data$D8HOURMAX)
+ozone.geo<-as.geodata(temp,covar.col=1)
+
+plot(States)
+points.geodata(ozone.geo,pt.divide="quartiles",cex.min=.8,cex.max=.8,x.leg=-2329176,y.leg=-1000000,
+               add.to.plot=TRUE)
+title("Average Annual Daily 8hr Max Ozone",line=-3)
+@
+
+\item
+Produce a $2\times 2$ display of 4 descriptive plots using the \texttt{plot(geodata object)} command for the ozone data. This is a large area to consider, so to better see possible spatial trends across the US, plot the data separately versus the $x$ and $y$ coordinates.
+\item
+Estimate and plot the semivariogram of the ozone data using the default binning in \texttt{variog}.
+Actually estimate and plot the semivariogram with and without restricting the distances to be within half the maximum inter-point distance (so estimate two semivariograms). In the future though whenever asked to estimate a semivariogram/variogram always restrict it to be within half the maximum inter-point distance.
+\item
+For the ozone semivariogram based on distances restricted to be within half the maximum inter-point distance use the \texttt{eyefit} command and select a semivariogram function and set of parameter estimates that appear to fit the semivariogram well. For Mac users who have problem getting the \texttt{eyefit} command to work just eyeball a set of parameter estimates.
+\item
+Following the results from (b) go ahead a fit a large scale spatial trend based on the easting (or $x$) coordinate, ignoring and trend in the northing (or $y$) coordinate. 
+The code I provide fits a natural spline of the easting coordinate with 4 degrees of freedom to try and match the apparent trend. 
+Now using the residuals from this model, estimate and plot the semivariogram (residual semivariogram) and use the \texttt{eyefit} command and select a semivariogram function and set of parameter estimates that appear to fit the semivariogram well. Select the same semivariogram function as you did in (d).
+\item
+With the information generated (a) - (e) address the following and reference specific plots in your answers/interpretations.
+\begin{enumerate}[(i)]
+\item
+Does the ozone data appear to be Normally distributed?
+\item
+Argue for the existence of a large scale spatial trend in the ozone data.
+\item
+Describe the difference in the two estimated semivariograms from (c) and what might be influencing the pattern seen in the semivariogram estimated based on all pairwise distances.
+\item
+Specify the spatial regression model (its either ordinary or universal kriging) for what the semivariogram estimated in (c) is for and what the semivariogram estimated in (e) is for. 
+So two models need to be specified. 
+Also for each describe what data the semivariogram is estimating spatial dependence of.
+\item
+Describe any difference in the fitted semivariogram functions arrived at in (d) and (e). 
+How have the total sills changed and provide an interpretation for this?
+\end{enumerate}
+\end{enumerate}
+
+\subsection*{Kriging the ozone data}
+\begin{enumerate}
+\item[g.]
+Using weighted least squares, fit the semivariogram function from (d) to the ozone data using the initial values selected in (d). Again using weighted least squares fit the semivariogram function from (e) to the residuals of the model used in (e) using the initial values selected.
+\item[h.]
+Produce a map of IDW predicted ozone.
+\item[i.]
+Produce a map of trend surface model ozone predictions and a map of predicted stan- dard errors. Specify the trend using the natural spline (with 4 degrees of freedom) of the easting coordinate as utilized previously.
+\item[j.]
+Produce a map of ordinary kriged ozone predictions and a map of corresponding pre- diction standard errors.
+\item[k.]
+Produce a map of universal kriged ozone predictions and a map of corresponding prediction standard errors. For the trend use the same natural spline on the easting coordinate as in the trend surface model predictions.
+\item[l.]
+With the information generated (g) - (k) address the following and reference specific plots in your answers/interpretations.
+\begin{enumerate}[(i)]
+\item
+Write out the statistical regression models used for generating the predictions in (h) through (k). If a statistical model doesn’t exist just say so. Level of detail for the written models should be commensurate with that found in the lecture notes.
+\item
+For each of the spatial prediction approaches considered (IDW, trend surface, ordinary and universal kriging) describe the behavior of the predictions and pre- diction standard errors as prediction locations get further away from the sampled data.
+\item
+Spend some time studying the difference between the spatial prediction approaches presented with this data. There is nothing to write down or hand in for this, but I’m hoping it might generate some questions.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
